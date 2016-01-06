@@ -19,4 +19,11 @@ describe('Thermostat', function() {
     });
   });
 
+  describe('#downButton', function(){
+    it('should decrease the temperature by 1', function(){
+      thermostat.downButton();
+      expect(thermostat.temp).toEqual(19);
+    });
+  });
+
 });

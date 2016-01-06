@@ -5,3 +5,7 @@ var Thermostat = function(){
 Thermostat.prototype.upButton = function() {
   return this.temp++;
 };
+
+Thermostat.prototype.downButton = function() {
+  return this.temp--;
+};
