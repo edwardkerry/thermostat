@@ -1,21 +1,31 @@
+'use strict()';
+
 var Thermostat = function(){
   this.DEFAULT_TEMP = 20;
   this.MIN_TEMP = 10;
   this.MAX_TEMP = 25;
   this.currentTemp = this.DEFAULT_TEMP;
   this.powerSave = true;
-  this.displayColour = 'Yellow';
+  this.displayColour = 'Medium';
+};
+
+Thermostat.prototype.getCurrentTemp = function() {
+  return this.currentTemp;
+};
+
+Thermostat.prototype.getMaxTemp = function() {
+  return this.MAX_TEMP;
 };
 
 Thermostat.prototype.upButton = function() {
-  error = "Temperature cannot rise above max temperature";
+  var error = "Temperature cannot rise above max temperature";
   if (this.currentTemp === this.MAX_TEMP) throw new Error(error);
   this.currentTemp++;
   this.tempCheck();
 };
 
 Thermostat.prototype.downButton = function() {
-  error = 'Temperature cannot fall below 10';
+  var error = 'Temperature cannot fall below 10';
   if (this.currentTemp === this.MIN_TEMP) throw new Error(error);
   this.currentTemp--;
   this.tempCheck();
@@ -38,9 +48,9 @@ Thermostat.prototype.powerSaveButton = function(){
 
 Thermostat.prototype.tempCheck = function(){
   if(this.currentTemp < 18)
-   {this.displayColour = 'Green';}
+   {this.displayColour = 'Low';}
   else if(this.currentTemp >= 18 && this.currentTemp < 25)
-    {this.displayColour = 'Yellow';}
+    {this.displayColour = 'Medium';}
   else
-    {this.displayColour = 'Red';}
+    {this.displayColour = 'High';}
 };

@@ -1,3 +1,5 @@
+'use strict()';
+
 describe('Thermostat', function() {
 
   var thermostat;
@@ -31,11 +33,23 @@ describe('Thermostat', function() {
         error = 'Temperature cannot rise above max temperature';
         expect(function() { thermostat.upButton(); }).toThrowError(error);
       });
+
+      describe('#getMaxTemp', function(){
+        it('should show the max temp', function(){
+          expect(thermostat.getMaxTemp()).toEqual(thermostat.MAX_TEMP);
+        });
+      });
+    });
+  });
+
+  describe('#currentTemp', function(){
+    it('should initialize at 20', function(){
+      expect(thermostat.currentTemp).toEqual(thermostat.DEFAULT_TEMP);
     });
 
-    describe('#currentTemp', function(){
-      it('should initialize as DEFAULT_TEMP', function(){
-        expect(thermostat.currentTemp).toEqual(thermostat.DEFAULT_TEMP);
+    describe('#getCurrentTemp', function(){
+      it('should show the current temp', function(){
+        expect(thermostat.getCurrentTemp()).toEqual(thermostat.DEFAULT_TEMP);
       });
     });
   });
@@ -101,20 +115,20 @@ describe('Thermostat', function() {
 
   describe('Display', function(){
     it('is yellow is temperature is >= 18 and < 25', function(){
-      expect(thermostat.displayColour).toEqual('Yellow');
+      expect(thermostat.displayColour).toEqual('Medium');
     });
 
     it('is green if temperature is < 18', function(){
       thermostat.downButton();
       thermostat.downButton();
       thermostat.downButton();
-      expect(thermostat.displayColour).toEqual('Green');
+      expect(thermostat.displayColour).toEqual('Low');
     });
 
     it('is red if temperature is >= 25', function(){
       thermostat.powerSaveButton();
       for (i = 0; i < 8; i++){ thermostat.upButton();}
-      expect(thermostat.displayColour).toEqual('Red');
+      expect(thermostat.displayColour).toEqual('High');
     });
   });
 
