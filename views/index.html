@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Thermostat</title>
+  </head>
+  <body>
+    <section id="display">
+      <h1 id="current-temperature">temperature here...</h1>
+      <h3 id="max-temperature">max-temperature...</h3>
+      <h3 id="min-temperature">min-temperature...</h3>
+      <h3 id="energy-use">energy-use...</h3>
+      <h3 id="power-save-mode">power-save-mode...</h3>
+    </section>
+    <section id="control-buttons">
+      <form for="up-button">
+        <input id="up-button" value="+">
+      </form>
+      <form for="down-button">
+        <input id="down-button" value="-">
+      </form>
+    </section>
+    <section id="option-buttons">
+      <form for="reset-button">
+        <input id="reset-button" value="reset temperature">
+      </form>
+      <form for="power-save-button">
+        <input id="power-save-button" value="power save on/off">
+      </form>
+    </section>
+    <script src="../src/thermostat.js"></script>
+  </body>
+</html>
