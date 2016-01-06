@@ -19,7 +19,7 @@ Thermostat.prototype.downButton = function() {
 Thermostat.prototype.powerSaveSwitch = function(){
   this.powerSave = !this.powerSave;
   if (this.powerSave)
-    { this.MAX_TEMP = 25;}
+    { this.MAX_TEMP = 25; }
   else
-   { this.MAX_TEMP = 32;}
+    { this.MAX_TEMP = 32; }
 };
