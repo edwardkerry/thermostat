@@ -25,6 +25,14 @@ describe('Thermostat', function() {
       });
     });
 
+    describe('#MAX_TEMP', function(){
+      it('does not allow temperature to rise above MAX_TEMP', function(){
+        for(i = 0; i < 5; i++) { thermostat.upButton(); }
+        error = 'Temperature cannot rise above max temperature';
+        expect(function() { thermostat.upButton(); }).toThrowError(error);
+      });
+    });
+
     describe('#currentTemp', function(){
       it('should initialize as DEFAULT_TEMP', function(){
         expect(thermostat.currentTemp).toEqual(thermostat.DEFAULT_TEMP);
@@ -36,7 +44,6 @@ describe('Thermostat', function() {
     it('should be on by default', function(){
       expect(thermostat.powerSave).toEqual(true);
     });
-
 
     describe('power save mode is on', function(){
       it('should have a max temp of 25', function(){
@@ -51,7 +58,6 @@ describe('Thermostat', function() {
       });
     });
   });
-
 
   describe('Buttons', function(){
     describe('#upButton', function() {
@@ -83,8 +89,33 @@ describe('Thermostat', function() {
         thermostat.powerSaveButton();
         expect(thermostat.powerSave).toEqual(true);
       });
+
+      it ('if current temp > 25, power save sets it to 25', function(){
+        thermostat.powerSaveButton();
+        for(i = 0; i < 9; i++) { thermostat.upButton(); }
+        thermostat.powerSaveButton();
+        expect(thermostat.currentTemp).toEqual(25);
+      });
     });
   });
 
+  describe('Display', function(){
+    it('is yellow is temperature is >= 18 and < 25', function(){
+      expect(thermostat.displayColour).toEqual('Yellow');
+    });
+
+    it('is green if temperature is < 18', function(){
+      thermostat.downButton();
+      thermostat.downButton();
+      thermostat.downButton();
+      expect(thermostat.displayColour).toEqual('Green');
+    });
+
+    it('is red if temperature is >= 25', function(){
+      thermostat.powerSaveButton();
+      for (i = 0; i < 8; i++){ thermostat.upButton();}
+      expect(thermostat.displayColour).toEqual('Red');
+    });
+  });
 
 });
