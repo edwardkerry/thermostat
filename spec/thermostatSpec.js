@@ -6,7 +6,7 @@ describe('Thermostat', function() {
     thermostat = new Thermostat();
   });
 
-  describe('temperature', function(){
+  describe('Temperature', function(){
     describe('#DEFAULT_TEMP', function(){
       it('is 20', function(){
         expect(thermostat.DEFAULT_TEMP).toEqual(20);
@@ -32,46 +32,59 @@ describe('Thermostat', function() {
     });
   });
 
-  describe('power save mode', function(){
+  describe('Power save mode', function(){
     it('should be on by default', function(){
       expect(thermostat.powerSave).toEqual(true);
     });
 
-    describe('#powerSaveSWitch', function(){
+
+    describe('power save mode is on', function(){
+      it('should have a max temp of 25', function(){
+        expect(thermostat.MAX_TEMP).toEqual(25);
+      });
+    });
+
+    describe('power save mode is off', function(){
+      it('should have a max temp of 32', function(){
+        thermostat.powerSaveButton();
+        expect(thermostat.MAX_TEMP).toEqual(32);
+      });
+    });
+  });
+
+
+  describe('Buttons', function(){
+    describe('#upButton', function() {
+      it('should increase the current temperature by 1', function() {
+        thermostat.upButton();
+        expect(thermostat.currentTemp).toEqual(21);
+      });
+    });
+
+    describe('#downButton', function(){
+      it('should decrease the current temperature by 1', function(){
+        thermostat.downButton();
+        expect(thermostat.currentTemp).toEqual(19);
+      });
+    });
+
+    describe('#resetButton', function(){
+      it('should reset the temperature to the default temperature', function(){
+        thermostat.downButton();
+        thermostat.resetButton();
+        expect(thermostat.currentTemp).toEqual(20);
+      });
+    });
+
+    describe('#powerSaveButton', function(){
       it('turns power save on and off', function(){
-        thermostat.powerSaveSwitch();
+        thermostat.powerSaveButton();
         expect(thermostat.powerSave).toEqual(false);
-        thermostat.powerSaveSwitch();
+        thermostat.powerSaveButton();
         expect(thermostat.powerSave).toEqual(true);
       });
     });
   });
 
-  describe('#upButton', function() {
-    it('should increase the current temperature by 1', function() {
-      thermostat.upButton();
-      expect(thermostat.currentTemp).toEqual(21);
-    });
-  });
-
-  describe('#downButton', function(){
-    it('should decrease the current temperature by 1', function(){
-      thermostat.downButton();
-      expect(thermostat.currentTemp).toEqual(19);
-    });
-  });
-
-  describe('power save mode is on', function(){
-    it('should have a max temp of 25', function(){
-      expect(thermostat.MAX_TEMP).toEqual(25);
-    });
-  });
-
-  describe('power save mode is off', function(){
-    it('should have a max temp of 32', function(){
-      thermostat.powerSaveSwitch();
-      expect(thermostat.MAX_TEMP).toEqual(32);
-    });
-  });
 
 });
