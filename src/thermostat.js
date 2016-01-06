@@ -16,10 +16,14 @@ Thermostat.prototype.downButton = function() {
   this.currentTemp--;
 };
 
-Thermostat.prototype.powerSaveSwitch = function(){
+Thermostat.prototype.powerSaveButton = function(){
   this.powerSave = !this.powerSave;
   if (this.powerSave)
     { this.MAX_TEMP = 25;}
   else
    { this.MAX_TEMP = 32;}
+};
+
+Thermostat.prototype.resetButton = function() {
+  this.currentTemp = this.DEFAULT_TEMP;
 };
