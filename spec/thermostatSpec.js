@@ -25,6 +25,12 @@ describe('Thermostat', function() {
         error = 'Temperature cannot fall below 10';
         expect(function() { thermostat.downButton(); }).toThrowError(error);
       });
+
+      describe('#getMinTemp', function(){
+        it('should show the min temp', function(){
+          expect(thermostat.getMinTemp()).toEqual(thermostat.MIN_TEMP);
+        });
+      });
     });
 
     describe('#MAX_TEMP', function(){
@@ -40,16 +46,15 @@ describe('Thermostat', function() {
         });
       });
     });
-  });
+    describe('#currentTemp', function(){
+      it('should initialize at 20', function(){
+        expect(thermostat.currentTemp).toEqual(thermostat.DEFAULT_TEMP);
+      });
 
-  describe('#currentTemp', function(){
-    it('should initialize at 20', function(){
-      expect(thermostat.currentTemp).toEqual(thermostat.DEFAULT_TEMP);
-    });
-
-    describe('#getCurrentTemp', function(){
-      it('should show the current temp', function(){
-        expect(thermostat.getCurrentTemp()).toEqual(thermostat.DEFAULT_TEMP);
+      describe('#getCurrentTemp', function(){
+        it('should show the current temp', function(){
+          expect(thermostat.getCurrentTemp()).toEqual(thermostat.DEFAULT_TEMP);
+        });
       });
     });
   });
@@ -59,16 +64,22 @@ describe('Thermostat', function() {
       expect(thermostat.powerSave).toEqual(true);
     });
 
-    describe('power save mode is on', function(){
-      it('should have a max temp of 25', function(){
+    describe('when power save mode is on', function(){
+      it('max temp should be 25', function(){
         expect(thermostat.MAX_TEMP).toEqual(25);
       });
     });
 
-    describe('power save mode is off', function(){
-      it('should have a max temp of 32', function(){
+    describe('when power save mode is off', function(){
+      it('max temp should be 32', function(){
         thermostat.powerSaveButton();
         expect(thermostat.MAX_TEMP).toEqual(32);
+      });
+    });
+
+    describe('#getPowerSaveMode', function(){
+      it('should show if power save mode is on', function(){
+        expect(thermostat.getPowerSaveMode()).toEqual(thermostat.powerSave);
       });
     });
   });
@@ -113,22 +124,28 @@ describe('Thermostat', function() {
     });
   });
 
-  describe('Display', function(){
-    it('is yellow is temperature is >= 18 and < 25', function(){
-      expect(thermostat.displayColour).toEqual('Medium');
+  describe('Energy Use', function(){
+    it('is medium if temperature is >= 18 and < 25', function(){
+      expect(thermostat.energyUse).toEqual('Medium');
     });
 
     it('is green if temperature is < 18', function(){
       thermostat.downButton();
       thermostat.downButton();
       thermostat.downButton();
-      expect(thermostat.displayColour).toEqual('Low');
+      expect(thermostat.energyUse).toEqual('Low');
     });
 
     it('is red if temperature is >= 25', function(){
       thermostat.powerSaveButton();
       for (i = 0; i < 8; i++){ thermostat.upButton();}
-      expect(thermostat.displayColour).toEqual('High');
+      expect(thermostat.energyUse).toEqual('High');
+    });
+  });
+
+  describe('#getEnergyUse', function(){
+    it('should show the current energy use', function (){
+      expect(thermostat.getEnergyUse()).toEqual(thermostat.energyUse);
     });
   });
 

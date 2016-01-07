@@ -6,7 +6,7 @@ var Thermostat = function(){
   this.MAX_TEMP = 25;
   this.currentTemp = this.DEFAULT_TEMP;
   this.powerSave = true;
-  this.displayColour = 'Medium';
+  this.energyUse = 'Medium';
 };
 
 Thermostat.prototype.getCurrentTemp = function() {
@@ -15,6 +15,18 @@ Thermostat.prototype.getCurrentTemp = function() {
 
 Thermostat.prototype.getMaxTemp = function() {
   return this.MAX_TEMP;
+};
+
+Thermostat.prototype.getMinTemp = function(){
+  return this.MIN_TEMP;
+};
+
+Thermostat.prototype.getEnergyUse = function(){
+  return this.energyUse;
+};
+
+Thermostat.prototype.getPowerSaveMode = function(){
+  return this.powerSave;
 };
 
 Thermostat.prototype.upButton = function() {
@@ -48,9 +60,9 @@ Thermostat.prototype.powerSaveButton = function(){
 
 Thermostat.prototype.tempCheck = function(){
   if(this.currentTemp < 18)
-   {this.displayColour = 'Low';}
+   {this.energyUse = 'Low';}
   else if(this.currentTemp >= 18 && this.currentTemp < 25)
-    {this.displayColour = 'Medium';}
+    {this.energyUse = 'Medium';}
   else
-    {this.displayColour = 'High';}
+    {this.energyUse = 'High';}
 };
