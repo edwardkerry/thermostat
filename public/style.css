@@ -1,0 +1,26 @@
+.Low{
+  color: green;
+}
+
+.Medium{
+  color: yellow;
+}
+
+.High{
+  color: red;
+}
+
+
+#power-monitor {
+  border-radius: 100%;
+  height: 2em;
+  width: 2em;
+}
+
+.On {
+  background-color: green;
+}
+
+.Off {
+  background-color: red;
+}

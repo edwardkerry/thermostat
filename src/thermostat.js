@@ -26,7 +26,10 @@ Thermostat.prototype.getEnergyUse = function(){
 };
 
 Thermostat.prototype.getPowerSaveMode = function(){
-  return this.powerSave;
+  if(this.powerSave === true)
+    {return 'On';}
+  else
+    {return 'Off';}
 };
 
 Thermostat.prototype.upButton = function() {

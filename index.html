@@ -2,24 +2,30 @@
 <html>
   <head>
     <title>Thermostat</title>
+    <link rel="stylesheet" type ="text/css" href="public/style.css">
   </head>
   <body>
     <section id="display">
-      <h1 id="current-temperature">temperature here...</h1>
-      <h3 id="max-temperature">max-temperature...</h3>
-      <h3 id="min-temperature">min-temperature...</h3>
-      <h3 id="energy-use">energy-use...</h3>
-      <h3 id="power-save-mode">power-save-mode...</h3>
+      <h1 id="current-temperature"></h1>
     </section>
     <section id="control-buttons">
       <button id="up-button">+</button>
       <button id="down-button">-</button>
     </section>
     <section id="option-buttons">
-      <button id="reset-button">Reset default temperature</button>
+      <button id="reset-button">Reset temperature</button>
       <button id="power-save-button">Power save mode</button>
+      <div id="power-monitor"></div>
     </section>
+  </section id="weather">
+    <form id="city_select">
+      <input id="current_city" type="text" placeholder="Choose your city"></input>
+      <input type="submit"></input>
+    </form>
+      <h1> Current temperature in <span id="live-city"></span> is <span id="live-temp"></span></h1>
+  </section>
     <script src="./src/thermostat.js"></script>
     <script src="jquery-2.1.4.js"></script>
+    <script src="interface.js"></script>
   </body>
 </html>

@@ -79,7 +79,12 @@ describe('Thermostat', function() {
 
     describe('#getPowerSaveMode', function(){
       it('should show if power save mode is on', function(){
-        expect(thermostat.getPowerSaveMode()).toEqual(thermostat.powerSave);
+        expect(thermostat.getPowerSaveMode()).toEqual('On');
+      });
+
+      it('should show if power save mode is off', function(){
+        thermostat.powerSaveButton();
+        expect(thermostat.getPowerSaveMode()).toEqual('Off');
       });
     });
   });
