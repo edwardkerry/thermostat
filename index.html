@@ -12,27 +12,14 @@
       <h3 id="power-save-mode">power-save-mode...</h3>
     </section>
     <section id="control-buttons">
-      <form for="up-button">
-        <input id="up-button" value="+">
-      </form>
-      <form for="down-button">
-        <input id="down-button" value="-">
-      </form>
+      <button id="up-button">+</button>
+      <button id="down-button">-</button>
     </section>
     <section id="option-buttons">
-      <form for="reset-button">
-        <input id="reset-button" value="reset temperature">
-      </form>
-      <form for="power-save-button">
-        <input id="power-save-button" value="power save on/off">
-      </form>
+      <button id="reset-button">Reset default temperature</button>
+      <button id="power-save-button">Power save mode</button>
     </section>
-    <script src="../src/thermostat.js"></script>
+    <script src="./src/thermostat.js"></script>
     <script src="jquery-2.1.4.js"></script>
-    <script>
-      window.onload = function() {
-      alert( "welcome" );
-      };
-    </script>
   </body>
 </html>
